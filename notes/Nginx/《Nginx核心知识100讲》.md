@@ -1,13 +1,15 @@
-https://www.bilibili.com/video/BV1qC4y1H7Ko?p=10
+
 
 Nginx核心知识100讲
 -----
+
+https://www.bilibili.com/video/BV1qC4y1H7Ko?p=10
 
 [课程地址](https://time.geekbang.org/course/intro/100020301)
 
 [课件](https://gitee.com/geektime-geekbang/geektime-nginx)
 
-![目录](https://static001.geekbang.org/resource/image/92/3e/9281538d72e25ff8e2b6d7e12527ce3e.jpg)
+<img src="https://static001.geekbang.org/resource/image/92/3e/9281538d72e25ff8e2b6d7e12527ce3e.jpg" alt="目录" style="zoom:25%;" />
 
 ## 一、初始Nginx
 
@@ -301,11 +303,11 @@ root       1466   1438  0 16:33 pts/0    00:00:00 grep --color=auto nginx
 
 ### 从网络原理来看SSL安全协议
 
-![image-20210124105754157](/Users/andyron/Library/Application Support/typora-user-images/image-20210124105754157.png)
+![](../../images/image-20210124105754157.png)
 
 
 
-![image-20210124105823529](/Users/andyron/Library/Application Support/typora-user-images/image-20210124105823529.png)
+![](../../images/image-20210124105823529.png)
 
 
 
@@ -317,15 +319,15 @@ root       1466   1438  0 16:33 pts/0    00:00:00 grep --color=auto nginx
 
 ### SSL证书的公信力是如何保证的？
 
-![image-20210124105902275](/Users/andyron/Library/Application Support/typora-user-images/image-20210124105902275.png)
+![](../../images/image-20210124105902275.png)
 
-![image-20210124110034382](/Users/andyron/Library/Application Support/typora-user-images/image-20210124110034382.png)
+![](../../images/image-20210124110034382.png)
 
 
 
-![image-20210124110049758](/Users/andyron/Library/Application Support/typora-user-images/image-20210124110049758.png)
+![](../../images/image-20210124110049758.png)
 
-![image-20210124110131288](/Users/andyron/Library/Application Support/typora-user-images/image-20210124110131288.png)
+![](../../images/image-20210124110131288.png)
 
 
 

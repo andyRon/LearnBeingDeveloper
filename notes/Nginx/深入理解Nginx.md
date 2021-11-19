@@ -1,6 +1,12 @@
 《深入理解Nginx：模块开发与 架构解析》笔记
 -------
 
+
+
+https://book.douban.com/subject/26745255/
+
+
+
 ## 一、Nginx能帮我们做什么
 
 ### 1 研究Nginx前的准备工作

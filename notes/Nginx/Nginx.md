@@ -69,7 +69,7 @@ brew install nginx
 /usr/local/etc/nginx/nginx.conf
 ```
 
-```
+```bash
 sudo nginx  启动
 sudo nginx -s stop	停止（强制退出）
 sudo nginx -s quit	安全退出(把所有进程都安全退出)
@@ -99,11 +99,19 @@ firewall-cmd --permanent --remove-port=8080/tcp
 3    add-port：标识添加的端口；
 ```
 
+<font color=#FF263D>注意：</font>
+
+多路复用：Nginx开启可能有多个进程
+
+Nginx开启后，关闭命令行不会关闭Nginx
+
+
+
 ### 实战
 
 nginx配置文件nginx.conf文件结构：
 
-```
+```properties
 // 全局配置
 
 events {
@@ -136,7 +144,7 @@ http {
 
 
 
-```
+```properties
 // ...
 
 # 负载均衡 这边的名字kuangstudy随意，要与相面proxy_pass对应
