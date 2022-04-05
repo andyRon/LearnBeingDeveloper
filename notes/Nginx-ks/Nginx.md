@@ -1,8 +1,8 @@
-### 资源
+Nginx入门
+-----
 
 
 
-[《Nginx 入门指南》](https://www.w3cschool.cn/nginx/)
 
 https://www.bilibili.com/video/BV1F5411J7vK
 
@@ -42,7 +42,7 @@ Nginx 是一款轻量级的 Web 服务器/反向代理服务器及电子邮件�
 
 ![](../../images/LearnBeingDeveloper-058.jpg)
 
-ip hash：对客户端的ip进行hash操作，然后根据hash结果将同一客户端iPhone的请求分发给同一台服务器进行处理，可以解决session不共享的问题。（一般不采用，多是采用redis解决session共享问题）
+ip hash：对客户端的ip进行hash操作，然后根据hash结果将同一客户端ip的请求分发给同一台服务器进行处理，可以解决session不共享的问题。（一般不采用，多是采用redis解决session共享问题）
 
 ![](../../images/LearnBeingDeveloper-059.jpg)
 
