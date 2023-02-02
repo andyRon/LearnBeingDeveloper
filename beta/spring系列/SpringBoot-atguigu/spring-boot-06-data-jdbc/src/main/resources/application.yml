@@ -1,0 +1,29 @@
+spring:
+  datasource:
+    # 数据源基本配置，基本配置属性与 DataSourceProperties 中属性是一一对应的
+    username: root
+    password: 123456
+    url: jdbc:mysql://192.168.165.138:3306/jdbc
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+#    initialization-mode: always
+#    schema:
+#      classpath: department.sql
+
+    #   数据源其他配置，这边属性显示黄颜色底，不在DataSourceProperties属性中。
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    #   配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+    filters: stat,wall,log4j
+    maxPoolPreparedStatementPerConnectionSize: 20
+    useGlobalDataSourceStat: true
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
