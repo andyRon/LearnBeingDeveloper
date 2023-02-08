@@ -20,7 +20,7 @@ https://www.bilibili.com/video/BV1nt4y1U7XP
 
 类的加载器		class文件结构 		执行引擎   
 
-![](/Users/andyron/Library/Application Support/typora-user-images/image-20200522180309214.png)
+![](images/image-20200522180309214.png)
 
 
 
@@ -47,11 +47,7 @@ https://www.bilibili.com/video/BV1nt4y1U7XP
 
 计算机系统体系对我们来说越来越远，在不了解底层实现方式的前提下，通过高级语言很容易编写程序代码。但事实上计算机并不认识高级语言。
 
-![image-20200522165919616](/Users/andyron/Library/Application Support/typora-user-images/image-20200522165919616.png)
-
-![](/Users/andyron/Library/Application Support/typora-user-images/image-20200522165934446.png)
-
-
+![](images/image-20200522165934446.png)
 
 ### 1.3 架构师每天都在思考什么？
 
@@ -77,7 +73,7 @@ Java：跨平台语言
 
 JVM：跨语言的平台
 
-![](/Users/andyron/Library/Application Support/typora-user-images/image-20200522170441321.png)
+![](images/image-20200522170441321.png)
 
 Java虚拟机根本不关心运行在其内部的程序到底是使用何种编程语言编写的，**它只关心”字节码“文件**。
 
@@ -114,7 +110,7 @@ Java可能不是最强大的语言，但是JVM是最强大的虚拟机（应用�
 
 #### JDK与JVM的关系
 
-![](../../images/java-035.jpg)
+![](images/java-035.jpg)
 
 #### Java vs C++
 
@@ -124,7 +120,7 @@ Java可能不是最强大的语言，但是JVM是最强大的虚拟机（应用�
 
 HotSpot JVM结构简图：
 
-![HotSpot JVM结构](/Users/andyron/Library/Application Support/typora-user-images/image-20200522172213639.png)
+![HotSpot JVM结构](images/image-20200522172213639.png)
 
 这个架构可以分成三层看：
 
@@ -136,9 +132,9 @@ HotSpot JVM结构简图：
 
 详图：
 
-![](/Users/andyron/Library/Application Support/typora-user-images/image-20200522172511198.png)
+![](images/image-20200522172511198.png)
 
-![](/Users/andyron/Library/Application Support/typora-user-images/image-20200522172445018.png)
+![](images/image-20200522172445018.png)
 
 主要优化堆区
 
@@ -148,7 +144,7 @@ HotSpot JVM结构简图：
 
 JVM早期版本是只有解释器，后期版本加入了即时编译器，即时编译器会对代码进行缓存。
 
-![11章理解执行引擎](/Users/andyron/Library/Application Support/typora-user-images/image-20200522171951195.png)
+![11章理解执行引擎](images/image-20200522171951195.png)
 
 上面的编译器是前端编译器
 
@@ -188,7 +184,7 @@ JIT（Just-In-Time Compiler），即时编译器。
 
  Java Card VM、Squawk VM、JavaInJava、Maxine VM、Jikes RVM、IKVM.NET、Jam VM、   Cacao VM、Sable VM、Kaffe、Jelatine JVM、Nano VM、MRP、Moxie JVM
 
-![](../../images/java-060.jpg)
+![](images/java-060.jpg)
 
 
 
@@ -311,9 +307,9 @@ JVM的类加载机制是什么？
 
 ### 2.3 类的加载过程
 
-![](/Users/andyron/Library/Application Support/typora-user-images/image-20200522174739915.png)
+![](images/image-20200522174739915.png)
 
-![](/Users/andyron/Library/Application Support/typora-user-images/image-20200522174916363.png)
+![](images/image-20200522174916363.png)
 
 #### 细节
 
@@ -343,7 +339,7 @@ JVM的类加载机制是什么？
 
 验证，在文件编辑器用16进制打开.class文件，发现前面几个都是相同。验证就是验证前面几个，确认为.class文件
 
-![](/Users/andyron/Library/Application Support/typora-user-images/image-20200522175424135.png)
+![](images/image-20200522175424135.png)
 
 ###### **解析(Resolve)：**
 
@@ -371,7 +367,7 @@ show Bytecode with jclasslib  jclasslib插件
 
 
 
-![](/Users/andyron/Library/Application Support/typora-user-images/image-20200522180742692.png)
+![](images/image-20200522180742692.png)
 
 
 
@@ -418,13 +414,13 @@ public class  ClinitTest {
 
 #### 加载器的分类
 
-![](/Users/andyron/Library/Application Support/typora-user-images/image-20200522181321978.png)
+![](images/image-20200522181321978.png)
 
 - JVM支持两种类型的类加载器，分别为**引导类加载器（Bootstrap ClassLoader）**（是C/C++编写的，是JVM的一部分）和自定义类加载器（User-Defined ClassLoader）（Java编写，直接或间接继承于ClassLoader）
 
 - 怎么算自定义呢？
 
-  ![image-20210915091141876](/Users/andyron/Library/Application Support/typora-user-images/image-20210915091141876.png)
+  ![](images/image-20210915091141876.png)
 
 - 这里的四者之间的关系是包含关系。不是上层下层，也不是子父类的继承关系。
 
@@ -445,9 +441,9 @@ public class  ClinitTest {
 
 ### 2.5 双亲委派机制
 
-![](/Users/andyron/Library/Application Support/typora-user-images/image-20200522181910663.png)
+![](images/image-20200522181910663.png)
 
-![](/Users/andyron/Library/Application Support/typora-user-images/image-20200522182345485.png)
+![](images/image-20200522182345485.png)
 
 #### **工作原理**
 
@@ -719,7 +715,7 @@ public  int test();
 
 - 如何理解栈管运行，堆管存储？
 
-![](/Users/andyron/Library/Application Support/typora-user-images/image-20200522183109845.png)
+![](images/image-20200522183109845.png)
 
 做法步骤看作栈，其中1、2、3...可以看作是程序计数器。
 
@@ -879,7 +875,7 @@ public class  SimpleHeap {
 
 堆对于不同线程是共享的，线程同时使用堆中数据就需要加锁，为了更方便地使用堆，加把堆分成若干TLAB
 
-![](/Users/andyron/Library/Application Support/typora-user-images/image-20200522184006000.png)
+![](images/image-20200522184006000.png)
 
 #### 对象分配过程
 
@@ -932,7 +928,7 @@ public class  HeapInstanceTest {
 
 
 
-![](/Users/andyron/Library/Application Support/typora-user-images/image-20200522184501322.png)
+![](images/image-20200522184501322.png)
 
 #### 堆的各种参数
 
@@ -1129,7 +1125,7 @@ jdk1.8及之后： 无永久代，类型信息、字段、方法、常量保存�
 
 #### 内存结构小结
 
-![](/Users/andyron/Library/Application Support/typora-user-images/image-20200522184844400.png)
+![](images/image-20200522184844400.png)
 
 
 
@@ -1154,7 +1150,7 @@ JDK8中：
 
 ### 3.8 StringTable
 
-![](/Users/andyron/Library/Application Support/typora-user-images/image-20200522185151521.png)
+![](images/image-20200522185151521.png)
 
 #### 3.8.1 String的不可变性
 
@@ -1827,7 +1823,7 @@ Java中垃圾收集的方法有哪些？
 
 ### 5.2 垃圾回收算法
 
-![image-20200522191323244](/Users/andyron/Library/Application Support/typora-user-images/image-20200522191323244.png)
+![](images/image-20200522191323244.png)
 
 引用计数算法 不用了
 
@@ -2024,7 +2020,7 @@ public class  RefCountGC {
 
 ### 5.3 相关概念
 
-![](/Users/andyron/Library/Application Support/typora-user-images/image-20200522191404558.png)
+![](images/image-20200522191404558.png)
 
 #### 5.3.1 System.gc()
 
@@ -2114,7 +2110,7 @@ javadoc中对 OutOfMemoryError 的解释是，没有空闲内存，并且垃圾�
 
 ### 5.4 垃圾回收器
 
-![](/Users/andyron/Library/Application Support/typora-user-images/image-20200522191445375.png)
+![](images/image-20200522191445375.png)
 
 #### 5.4.1 GC分类
 
