@@ -175,6 +175,14 @@ windows和Linux上都可以学习！
 
 ELK三剑客，解压即用！
 
+https://www.elastic.co/cn/elasticsearch/
+
+华为云镜像：
+
+ElasticSearch: https://mirrors.huaweicloud.com/elasticsearch/?C=N&O=D
+logstash: https://mirrors.huaweicloud.com/logstash/?C=N&O=D
+kibana: https://mirrors.huaweicloud.com/kibana/?C=N&O=D
+
 ### 熟悉目录
 
 ```
@@ -194,13 +202,80 @@ plugins			插件。ik
 
 ```shell
 ./bin/elasticsearch
+./bin/elasticsearch -d
+
+ps aux | grep elasticsearch
+# 也可以用jdk工具jps查看pid
+jps | grep elasticsearch
+# 关闭es
+kill -9 pid
 ```
 
 公开地址是9200，通信地址是9300。
 
+#### 可能遇到的问题
+
+- elasticsearch不能以root用户运行
+- elasticsearch不能版本对jdk版本需求不同
+
+
+
 ```
-publish_address {127.0.0.1:9200}
+[1]: max virtual memory areas vm.max_map_count [65530] is too low, increase to at least [262144]
 ```
+
+原因是系统限定的程序使用内存对es太小了，设置一下
+
+```shell
+su root
+vim /etc/sysctl.conf
+# 添加 vm.max_map_count=262144
+
+# 重新加载
+sysctl -p
+```
+
+```
+ERROR: [1] bootstrap checks failed
+[1]: the default discovery settings are unsuitable for production use; at least one of [discovery.seed_hosts, discovery.seed_providers, cluster.initial_master_nodes] must be configured
+```
+
+在es配置文件添加：
+
+```
+vim config/elasticsearch.yml
+
+cluster.initial_master_nodes: ["node-1"]
+```
+
+
+
+为了让虚拟机外的宿主机访问es，在es配置文件中添加：
+
+```yaml
+network.host: 0.0.0.0
+http.cors.enabled: true
+http.cors.allow-origin: "*"
+```
+
+
+
+```
+[WARN ][o.e.h.n.Netty4HttpServerTransport] [andyrondeMac-mini.local] received plaintext http traffic on an https channel, closing connection Netty4HttpChannel{localAddress=/127.0.0.1:9200, remoteAddress=/127.0.0.1:65471}
+```
+
+修改es配置文件中的安全认证，改为false：
+
+```yaml
+# xpack.security.enabled: true
+xpack.security.enabled: false
+
+xpack.security.http.ssl:
+  # enabled: true
+  enabled: false
+```
+
+
 
 ### 访问测试
 
@@ -258,7 +333,7 @@ http.cors.allow-origin: "*"
 
 >  elasticsearch-head和elasticsearch的关系，类似mysql客服端和mysql的关系。  
 
-之后就把elasticsearch-head当作是数据展示工具，查询的工作交给kibana。
+之后就把elasticsearch-head当作是数据==展示==工具，==查询==的工作交给kibana。
 
 ### 了解ELK
 
@@ -352,7 +427,7 @@ elasticsearch会自动的将新字段加入映射 ，但是这个字段的不确
 
 一个集群至少有一个节点，而一个节点就是一个**elasricsearch进程** ，节点可以有多个索引默认的，如果你创建索引，那么索引将会有个5个分片（primary shard,又称**主分片**）构成的，每一个主分片会有一个副本(replica shard ,又称**复制分片**）。
 
-![image-20220606104003108](images/image-20220606104003108.png)
+![](images/image-20220606104003108.png)
 
 ![](images/image-20211202203008826.png)
 
@@ -407,7 +482,7 @@ To forever, study every day, good good up # 文档2包含的内容
 
 IK提供了两个分词算法：ik_smart 和 ik_max_word，中ik_smart为最少切分，ik_max_word为最细粒度划分。
 
-1. 下载插件，[中文分词器IK](https://github.com/medcl/elasticsearch-analysis-ik)
+1. 下载插件，[中文分词器IK](https://github.com/medcl/elasticsearch-analysis-ik/releases)
 
 2. 安装：把下载的压缩包，解压到elasticsearch的插件目录(plugins/)中即可。
 
@@ -602,10 +677,6 @@ GET _analyze
 
 
 ## Rest风格操作
-
-
-
-
 
 | method | url地址                                         | 描述                   |
 | ------ | ----------------------------------------------- | ---------------------- |
@@ -1589,12 +1660,81 @@ GET /andyron/user/_search
 
 
 
-## 集成Spring Boot
+## 集成Spring Boot🔖
 
-找官方文档
+找官方文档[Elasticsearch Clients](https://www.elastic.co/guide/en/elasticsearch/client/index.html)
 
-[Elasticsearch Clients](https://www.elastic.co/guide/en/elasticsearch/client/index.html)
+![](images/image-20230405133622392.png)
 
-🔖 p12-p14
+两种方式
 
- 注意es版本
+1. 找到依赖
+
+```xml
+<dependency>
+    <groupId>org.elasticsearch.client</groupId>
+    <artifactId>elasticsearch-rest-high-level-client</artifactId>
+    <version>7.17.9</version>
+</dependency>
+```
+
+2. 找对象
+
+![](images/image-20230405134216704.png)
+
+3. 分析这个类中的方法
+
+
+
+
+
+**配置基本的项目**
+
+问题：一定要保证导入的依赖和ES的版本一致
+
+8.7.0
+
+> 🔖新版本的es一不再推荐使用Java REST Client的了
+
+```xml
+<properties>
+  <java.version>17</java.version>
+  <!-- 自定义es版本，保证与本es版本一致 -->
+  <elasticsearch-client.version>8.7.0</elasticsearch-client.version>
+</properties>
+```
+
+> Springboot的两步骤：
+>
+> 1 找对象
+>
+> 2 放到spring中待用
+
+
+
+**具体的API测试**
+
+1. 创建索引
+
+
+
+2. 判断索引是否存在
+
+
+
+3. 删除索引
+
+
+
+4. 创建文档
+
+
+
+5. curd文档
+
+
+
+## 实战：京东搜索🔖
+
+
+
