@@ -24,7 +24,7 @@
 
 - [JVM入门](https://github.com/andyRon/LearnJava/blob/master/notes/JVM/JVM入门/JVM入门.md)  [Gitee](https://gitee.com/andyRon/LearnJava/blob/master/notes/JVM/JVM入门/JVM入门.md)  [本地](../LearnJava/notes/JVM入门/JVM入门.md)
 - [《深入理解Java虚拟机》笔记⏳](https://github.com/andyRon/LearnJava/blob/master/notes/深入理解Java虚拟机/深入理解Java虚拟机.md)  [Gitee](https://gitee.com/andyRon/LearnJava/blob/master/notes/深入理解Java虚拟机/深入理解Java虚拟机.md)  [本地](../LearnJava/notes/深入理解Java虚拟机/深入理解Java虚拟机.md)
-- ❤️[尚硅谷宋红康JVM全套教程](https://github.com/andyRon/LearnJava/blob/master/notes/JVM_shk/JVM_shk.md)  [Gitee](../LearnJava/notes/JVM_shk/JVM_shk.md)  [本地](../LearnJava/notes/JVM_shk/JVM_shk.md)
+- ❤️[尚硅谷宋红康JVM全套教程](https://github.com/andyRon/LearnJava/blob/master/notes/JVM_shk/JVM_shk.md)  [Gitee](https://gitee.com/andyRon/LearnJava/blob/master/notes/JVM_shk/JVM_shk.md)  [本地](../LearnJava/notes/JVM_shk/JVM_shk.md)
 
 ## Spring
 
@@ -32,9 +32,8 @@
 - [SpringMVC](https://github.com/andyRon/LearnSpring/blob/master/notes/SpringMVC/SpringMVC.md)  [gitee](https://gitee.com/andyRon/LearnSpring/blob/master/notes/SpringMVC/SpringMVC.md)  [本地](../LearnSpring/notes/SpringMVC/SpringMVC.md)
 - [SpringBoot](https://github.com/andyRon/LearnSpring/blob/master/notes/SpringBoot/SpringBoot.md)  [gitee](https://gitee.com/andyRon/LearnSpring/blob/master/notes/SpringBoot/SpringBoot.md)  [本地](../LearnSpring/notes/SpringBoot/SpringBoot.md)
 - [SpringCloud](https://github.com/andyRon/LearnSpring/blob/master/notes/SpringCloud/SpringCloud.md)  [gitee](https://gitee.com/andyRon/LearnSpring/blob/master/notes/SpringCloud/SpringCloud.md)  [本地](../LearnSpring/notes/SpringCloud/SpringCloud.md)
-
+- [Spring6](https://github.com/andyRon/LearnSpring/blob/master/notes/Spring6/Spring6.md)  [gitee](https://gitee.com/andyRon/LearnSpring/blob/master/notes/Spring6/Spring6.md)  [本地](../LearnSpring/notes/Spring6/Spring6.md)
 - [《Spring揭秘》](../LearnSpring/notes/Spring-jiemi/Spring揭秘.md)
-
 - [《Spring实战》](../LearnSpring/notes/SpringAction/Spring实战.md)
 
 ## 前端
@@ -62,7 +61,7 @@
 
 ## 数据库
 
-- [《MySQL必知必会》](https://github.com/andyRon/LearnDatabase/blob/main/notes/MySQL必知必会/MySQL必知必会.md)  [本地](../LearnDatabase/notes/MySQL/MySQL必知必会.md)
+- [《MySQL必知必会》](https://github.com/andyRon/LearnDatabase/blob/main/notes/MySQL必知必会/MySQL必知必会.md)  [本地](../LearnDatabase/notes/MySQL必知必会/MySQL必知必会.md)
 
 - [《MySQL技术内幕：InnoDB存储引擎》](https://github.com/andyRon/LearnDatabase/blob/main/notes/MySQL技术内幕/MySQL技术内幕：InnoDB存储引擎.md)  [本地](../LearnDatabase/notes/MySQL技术内幕/MySQL技术内幕：InnoDB存储引擎.md)
 
@@ -113,8 +112,9 @@
 ## 项目
 
 - [springboot个人博客项目](https://github.com/andyRon/ARBlog/notes.md)  [本地](../ARBlog/notes.md)
-
 - [谷粒学苑](https://github.com/andyRon/ARGuliCollege/GuliCollege.md)  [本地](../ARGuliCollege/GuliCollege.md)
+- [ARTakeout](https://gitee.com/andyron/ARTakeout)  
+- [ARAuth](https://gitee.com/andyron/ARAuth)
 
 ## 更多
 
