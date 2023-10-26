@@ -164,6 +164,64 @@ Docker Hub
 
 阿里云等都有容器服务器
 
+### 安装Docker23-10-2
+
+```shell
+# cat /etc/os-release 
+NAME="CentOS Stream"
+VERSION="9"
+ID="centos"
+ID_LIKE="rhel fedora"
+VERSION_ID="9"
+PLATFORM_ID="platform:el9"
+PRETTY_NAME="CentOS Stream 9"
+ANSI_COLOR="0;31"
+LOGO="fedora-logo-icon"
+CPE_NAME="cpe:/o:centos:centos:9"
+HOME_URL="https://centos.org/"
+BUG_REPORT_URL="https://bugzilla.redhat.com/"
+REDHAT_SUPPORT_PRODUCT="Red Hat Enterprise Linux 9"
+REDHAT_SUPPORT_PRODUCT_VERSION="CentOS Stream"
+```
+
+
+
+```shell
+yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
+
+# 查看配置是否成功
+ll /etc/yum.repos.d/
+总用量 20
+-rw-r--r--. 1 root root 4245  9月  6  2022 centos-addons.repo
+-rw-r--r--. 1 root root 2600  9月  6  2022 centos.repo
+-rw-r--r--. 1 root root 2081 10月  2 20:39 docker-ce.repo
+-rw-r--r--. 1 root root  664  8月  4  2022 epel.repo
+
+# 更新yum软件包索引
+yum makecache fast
+
+# 查看所有仓库中所有docker版本
+yum list docker-ce --showduplicates | sort -r
+
+# 安装
+ yum install docker-ce  
+ 
+ #启动：
+systemctl start docker
+#添加开机启动
+systemctl enable docker
+
+# 验证安装是否成功(有client和service两部分表示docker安装启动都成功了
+docker version
+
+
+# 查看docker运行状态
+systemctl status docker
+
+```
+
+
+
 ### 安装Docker
 
 1. 环境准备
@@ -549,7 +607,11 @@ docker stop 容器id 		# 停止当前正在运行的容器
 docker kill 容器id		# 强制停止当前正在运行容器
 ```
 
+查看日志
 
+```
+docker logs -f 容器id
+```
 
 ### 常用其它命令
 
