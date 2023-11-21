@@ -4,6 +4,100 @@ Docker-ks
 
 
 
+## Docker常用命令
+
+```shell
+docker version
+docker info  		# docker系统信息，包括镜像和容器的数量 
+docker 命令 --help
+#  查看docker使用cpu、内存等资源的的状态。 Ctrl C 退出
+docker stats
+
+docker images  # 查看所有本地主机上的镜像
+docker images -q   # 只显示镜像id
+
+docker search []  # 镜像搜索
+docker search mysql --filter=STARS=3000  # 搜索star大于3000的
+docker pull []  # 下载镜像
+docker pull mysql:5.7  # 指定版本下载
+
+docker rmi -f 镜像1id
+docker rmi -f 镜像1id 镜像2id # 删除多个镜像
+docker rmi -f $(docker images -aq) # 删除全部的镜像
+
+docker image ls nginx  # 查看某个镜像本地所有版不能
+
+
+docker run [可选参数] image
+# 参数说明
+--name="Name"  		容器名字，用来区分容器
+-d								后台方式运行
+-it 							使用交互方式运行，进入容器查看内容
+-p 								指定容器的端口 -p 8080:8080
+		-p 主机端口:容器端口（常用）
+		-p ip:主机端口:容器端口
+		-p 容器端口
+		容器端口
+-P 								随机指定端口
+
+docker run -it centos /bin/bash   # 运行Centos镜像并进入
+exit  		# 退出容器回到主机，容器停止并退出
+Ctrl+P+Q	# 容器不停止退出
+
+docker ps  # 正在运行的容器
+-a  	# 正在运行的容器+历史运行过的容器
+-n=? 	# 显示最近创建的容器（？表示数目）
+-q		# 只显示容器的编号
+
+docker rm  容器id								# 删除指定的容器，不能删除正在运行的容器
+docker rm -f $(docker ps -aq)		# 删除所有容器
+docker ps -aq | xargs docker rm # 删除所有容器
+
+docker start 容器id		# 启动容器
+docker restart 容器id	# 重启容器
+docker stop 容器id 		# 停止当前正在运行的容器
+docker kill 容器id		# 强制停止当前正在运行容器
+
+docker top 容器id  		# 查看容器内进程信息
+
+# 进入当前正在运行的容器
+docker exec -it 容器id Shell		 # 进入容器后开启一个新的终端，可以在里面操作（常用）
+docker attach 容器id				 # 进入容器正在执行的终端，不会启动新的进程
+
+# 从容器中拷贝文件到主机
+docker cp 容器id:容器内路径  目的主机路径
+docker cp  6e6877efd23e:/home/tmp/test.java /home
+
+```
+
+
+
+> 像 Linux 中一样，我们要在 Windows 和 macOS 中使用 Docker 前，我们需要先将 Docker 服务启动起来。
+>
+> Docker 的核心功能，也就是容器实现，是基于 Linux 内核中 ==Namespaces、CGroups== 等功能的。可以说，Docker是依赖于 Linux 而存在的。
+>
+> 那么问题来了，Docker Desktop 是如何实现让我们在 Windows 和 macOS 中如此顺畅的使用 Docker 的呢？
+>
+> 其实 Docker Desktop 的实现逻辑很简单：既然 Windows 和 macOS 中没有 Docker 能够利用的 Linux 环境，那么我们生造一个 Linux 环境就行啦！Docker for Windows 和 Docker for Mac 正是这么实现的。
+>
+> 由于虚拟化在云计算时代的广泛使用，Windows 和 MacOS 也将虚拟化引入到了系统本身的实现中，这其中就包含了之前我们所提到的通过 ==Hypervisor== 实现虚拟化的功能。在 Windows 中，我们可以通过 ==Hyper-V== 实现虚拟化，而在 macOS 中，我们可以通过 HyperKit 实现虚拟化。
+>
+> Docker for Windows 和 Docker for Mac 这里利用了这两个操作系统提供的功能来搭建一个虚拟 Linux 系统，并在其之上安装和运行 docker daemon。
+>
+> ![](images/1354564-20190128160848610-1384072669.png)
+>
+> 除了搭建 Linux 系统并运行 docker daemon 之外，Docker Desktop 系列最突出的一项功能就是我们能够直接通过 PowerShell、Terminal 这类的控制台软件在 Windows 和 macOS 中直接操作虚拟 Linux 系统中运行的 docker daemon。
+>
+> 实现这个功能得益于 docker daemon 对外提供的操作过程并不是复杂且领域性强的 IPC 等方式，而是通用的 RESTful Api 的形式。也就是说，Docker Desktop 只要实现 Windows 和 macOS 中的客户端，就能够直接利用 Hypervisor 的网络支持与虚拟 Linux 系统中的 docker daemon 进行通讯，并对它进行控制。
+
+
+
+
+
+----
+
+
+
 DevOps
 
 
@@ -609,8 +703,12 @@ docker kill 容器id		# 强制停止当前正在运行容器
 
 查看日志
 
-```
+```shell
 docker logs -f 容器id
+# 查看最近30分钟的日志
+docker logs --since 30m CONTAINER_ID
+# 查看指定时间后的日志，只显示最后100行：
+docker logs -f -t --since="2018-02-08" --tail=100 CONTAINER_ID
 ```
 
 ### 常用其它命令
@@ -704,7 +802,7 @@ docker attach 容器id
 #### 从容器中拷贝文件到主机
 
 ```shell
-docker cp 容器id：容器内路径  目的主机路径
+docker cp 容器id:容器内路径  目的主机路径
 
 # 进入docker容器内部
 [root@VM-16-12-centos home]# docker attach 6e6877efd23e
@@ -851,9 +949,11 @@ drwxr-xr-x 2 root root 4096 Dec  3 14:17 .
 drwxr-xr-x 1 root root 4096 Dec  3 14:18 ..
 # 默认镜像是最小，不必要的都删除了。把webapps.dis目录内容复制到webapps即可
 cp -r webapps.dist/* webapps/
+
+curl localhost:3355
 ```
 
-#### 部署ES+Kibana🔖
+#### 部署ES+Kibana
 
 ```
 es 
@@ -866,9 +966,9 @@ es
 
 ```shell
  # 启动
- docker run -d --name elasticsearch -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" elasticsearch:7.14.2 
+docker run -d --name elasticsearch -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" elasticsearch:7.14.2 
  
- #  查看cpu的状态
+ #  查看docker使用cpu、内存等资源的的状态。 Ctrl C 退出
  docker stats
  
  # 访问测试
@@ -893,6 +993,7 @@ es
 
 # 关闭es
 docker stop 97b4d07c9e4e
+# es比较耗内存需要加限制
 # 添加内存限制，修改配置文件 -e 环境配置修改
 docker run -d --name elasticsearch02 -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" -e ES_JAVA_OPTS="-Xms64m -Xmx512m" elasticsearch:7.14.2 
 [root@VM-16-12-centos home]# docker stats
@@ -903,7 +1004,7 @@ CONTAINER ID   NAME              CPU %     MEM USAGE / LIMIT     MEM %     NET I
 
 
 
-kibana，思考之间网络是怎么链接的？
+kibana，思考之间网络是怎么链接的？🔖
 
 ![](./images/image-20211206130253480.png)
 
@@ -925,7 +1026,7 @@ docker run -d -p 8088:9000 \
 公网ip::8088
 
 admin
-1**9
+qwertyuiop123456
 ```
 
 链接local
@@ -1892,4 +1993,8 @@ https://www.bilibili.com/video/BV1kv411q7Qc
 Swarm 相当于k8s的简版
 
 ## CI/CD之Jenkins
+
+
+
+
 
