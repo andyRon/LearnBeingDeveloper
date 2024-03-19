@@ -167,7 +167,7 @@ Lucene是一个全文检索引擎的架构。那什么是全文搜索引擎？
 
 
 
-## Elasticsearch 安装
+## Elasticsearch安装
 
 JDK1.8 最低要求
 
